@@ -3,94 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Pérez - Desarrollador de Software</title>
+    <title>Alex Pérez - Desarrollador Multiplataforma</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
     <header class="header">
-        <a href="#inicio" class="logo">Alex Pérez</a>
-        
-        <nav class="navbar">
+        <nav class="glass-nav">
+            <a href="#inicio" class="logo">Alex Pérez</a>
+            
             <ul class="nav-links">
-                <li><a href="#inicio" class="active">Inicio</a></li>
+                <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#sobre-mi">Sobre Mí</a></li>
-                <li><a href="#competencias">Competencias</a></li>
+                <li><a href="#competencias">Skills</a></li>
                 <li><a href="#experiencia">Experiencia</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto" class="btn-nav">Contacto</a></li>
             </ul>
+            
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
-        
-        <div class="menu-toggle">
-            <i class="fas fa-bars" id="menu-icon"></i>
-        </div>
     </header>
 
     <main>
         <section id="inicio">
-            <div class="container hero-content">
-                <div class="hero-text">
-                    <span class="subtitle">Hola, soy</span>
-                    <h1>Alex Pérez</h1>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">Disponible para trabajar</span>
+                    <h1>Creando experiencias <br><span class="gradient-text">digitales únicas</span></h1>
                     
-                    <h3 style="color: var(--color-primario); min-height: 1.6em; margin-bottom: 1rem;">
-                        <span id="typewriter"></span><span class="cursor">&nbsp;</span>
-                    </h3>
+                    <div class="typewriter-container">
+                        I am a <span id="typewriter" style="color: var(--primary);"></span><span style="animation: blink 1s infinite">|</span>
+                    </div>
 
-                    <p class="hidden">
-                        Estudiante de <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>
-                        con enfoque en desarrollo móvil.
-                        Busco aplicar mis conocimientos y mi capacidad de resolución de problemas en un proyecto tecnológico desafiante.
+                    <p>
+                        Estudiante de <strong>Desarrollo de Aplicaciones Multiplataforma (DAM)</strong>.
+                        Especializado en crear soluciones modernas, funcionales y escalables.
                     </p>
                     
-                    <div class="cta-buttons hidden">
-                        <a href="#contacto" class="btn btn-primary">Contactar</a>
-                        <a href="https://github.com/alexP-codeLab" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                            Ver GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
+                    <div class="cta-group">
+                        <a href="#contacto" class="btn btn-primary">Contactar <i class="fas fa-arrow-right"></i></a>
+                        <a href="https://github.com/alexP-codeLab" target="_blank" class="btn btn-glass"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
                 
-                <div class="hero-photo">
-                    <div class="photo-wrapper"></div>
+                <div class="hero-image-container">
+                    <div class="profile-card" data-tilt>
+                        <div class="img-box">
+                            <img src="img/fotoCV.jpg" alt="Alex Pérez">
+                        </div>
+                        <div class="code-snippet">
+                            <div class="window-controls">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <code>
+                                <span class="var">const</span> <span class="name">dev</span> = {<br>
+                                &nbsp;&nbsp;name: <span class="str">"Alex"</span>,<br>
+                                &nbsp;&nbsp;role: <span class="str">"FullStack"</span><br>
+                                };
+                            </code>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="sobre-mi">
             <div class="container">
-                <h2>Sobre Mí</h2>
-                <div class="about-content">
+                <h2 class="section-title">Sobre Mí</h2>
+                
+                <div class="glass-panel">
                     <div class="about-text">
-                        <h3>Mi Perfil</h3>
-                        <p>
-                            Soy una persona <strong>responsable, proactiva</strong> y con una gran motivación por el aprendizaje continuo.
-                            Me desenvuelvo bien en entornos dinámicos y estoy listo para contribuir a un equipo de tecnología.
+                        <h3><i class="fas fa-user-astronaut" style="color: var(--secondary);"></i> Perfil Profesional</h3>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">
+                            Soy una persona <strong>responsable, proactiva</strong> y bilingüe (Gallego/Español). 
+                            He pivotado desde la psicología hacia la tecnología, lo que me permite entender tanto el código como a las personas que lo usan.
                         </p>
-                        <p>
-                            Además de mi formación técnica, soy <strong>bilingüe (Gallego Nativo/Español)</strong>
-                            y poseo un nivel <strong>C1 certificado de inglés</strong>,
-                            lo que me permite trabajar en entornos internacionales sin dificultad.
-                        </p>
-                    </div>
-                    
-                    <div class="about-education">
-                        <h3>Formación Académica</h3>
-                        <div class="education-item">
-                            <h4>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma</h4>
-                            <span class="institution">IES Cristóbal de Monroy</span>
-                            <span class="date">(2024 - actualmente)</span>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="number">C1</span>
+                                <span class="label">Inglés</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="number">2+</span>
+                                <span class="label">Lenguas Nativas</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="number">DAM</span>
+                                <span class="label">En curso</span>
+                            </div>
                         </div>
-                        <div class="education-item">
-                            <h4>Grado en Psicología (dos años cursados)</h4>
-                            <span class="institution">UNED</span>
-                            <span class="date">(2021 - 2023)</span>
+                    </div>
+
+                    <div class="education-timeline">
+                        <h3>Formación</h3>
+                        <div class="edu-item">
+                            <span class="year">2024 - Actual</span>
+                            <h4>Técnico Superior DAM</h4>
+                            <p>IES Cristóbal de Monroy</p>
+                        </div>
+                        <div class="edu-item">
+                            <span class="year">2021 - 2023</span>
+                            <h4>Grado en Psicología</h4>
+                            <p>UNED (2 años cursados)</p>
                         </div>
                     </div>
                 </div>
@@ -99,228 +134,136 @@
 
         <section id="competencias">
             <div class="container">
-                <h2>Competencias</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-code"></i> Lenguajes</h3>
-                        <ul>
-                            <li>Java</li><li>C#</li><li>Dart</li><li>JavaScript</li><li>SQL</li><li>PHP</li><li>Python (Básico)</li>
-                        </ul>
+                <h2 class="section-title">Stack Tecnológico</h2>
+                
+                <div class="bento-grid">
+                    <div class="glass-card bento-item large">
+                        <h3><i class="fas fa-code"></i> Lenguajes de Programación</h3>
+                        <div class="tags">
+                            <span>Java</span>
+                            <span>C#</span>
+                            <span>JavaScript</span>
+                            <span>Dart</span>
+                            <span>PHP</span>
+                            <span>SQL</span>
+                            <span>Python</span>
+                        </div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-mobile-alt"></i> Desarrollo Móvil</h3>
-                        <ul>
-                            <li>Flutter</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
+
+                    <div class="glass-card bento-item wide">
                         <h3><i class="fas fa-laptop-code"></i> Desarrollo Web</h3>
-                        <ul>
-                            <li>HTML</li><li>CSS</li><li>WordPress</li>
-                        </ul>
+                        <div class="tags">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>WordPress</span>
+                            <span>WooCommerce</span>
+                        </div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-database"></i> Bases de Datos</h3>
-                        <ul>
-                            <li>Firebase (Firestore)</li><li>MySQL</li><li>PostgreSQL</li>
-                        </ul>
+
+                    <div class="glass-card bento-item">
+                        <h3><i class="fas fa-mobile-alt"></i> Móvil</h3>
+                        <div class="tags">
+                            <span>Flutter</span>
+                        </div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-tools"></i> Herramientas</h3>
-                        <ul>
-                            <li>Git</li><li>Postman</li>
-                        </ul>
+
+                    <div class="glass-card bento-item">
+                        <h3><i class="fas fa-tools"></i> Tools</h3>
+                        <div class="tags">
+                            <span>Git/GitHub</span>
+                            <span>Postman</span>
+                            <span>Firebase</span>
+                        </div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-desktop"></i> IDEs</h3>
-                        <ul>
-                            <li>Visual Studio</li><li>Eclipse</li><li>NetBeans</li><li>WebStorm</li>
-                        </ul>
+                    
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-cogs"></i> Otras Tecnologías</h3>
-                        <ul>
-                            <li>XML</li><li>XAML</li><li>Odoo</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-language"></i> Idiomas</h3>
-                        <ul>
-                            <li>Español (Nativo)</li>
-                            <li>Gallego (Nativo)</li>
-                            <li>Inglés (Nivel C1)</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </section>
 
         <section id="experiencia">
             <div class="container">
-                <h2>Experiencia</h2>
+                <h2 class="section-title">Trayectoria</h2>
                 
-                <h3><i class="fa-solid fa-terminal"></i> Experiencia Tecnológica</h3>
-                <div class="timeline-container" style="margin-top: 2rem;">
+                <div class="timeline">
                     
-                    <div class="timeline-item timeline-left">
-                        <div class="timeline-content">
-                            <h4>Desarrollador Web Freelancer</h4>
-                            <span class="company">WordPress</span>
-                            <span class="date">Feb 2025 - actualmente</span>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item timeline-right">
-                        <div class="timeline-content">
-                            <h4>Desarrollador Web en Prácticas</h4>
-                            <span class="company">DIRECTO TELMARK (WordPress)</span>
-                            <span class="date">Feb 2025 - Mar 2025</span>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                <h3 style="margin-top: 4rem;"><i class="fa-solid fa-briefcase"></i> Otra Experiencia Profesional</h3>
-                <div class="timeline-container" style="margin-top: 2rem;">
-
-                    <div class="timeline-item timeline-left">
-                        <div class="timeline-content">
-                            <h4>Personal de equipo</h4>
-                            <span class="company">McDonald's</span>
-                            <span class="date">Dic 2024 - Sep 2025</span>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item timeline-right">
-                        <div class="timeline-content">
-                            <h4>Profesor particular</h4>
-                            <span class="date">May 2024 - Dic 2024</span>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item timeline-left">
-                        <div class="timeline-content">
-                            <h4>Auxiliar de seguridad</h4>
-                            <span class="company">GRUPO OMEGA</span>
-                            <span class="date">Jul 2024 - Ago 2024</span>
+                    <div class="timeline-row">
+                        <div class="timeline-time">Feb 2025 - Actual</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <i class="fas fa-laptop-code icon-bg"></i>
+                            <h4>Desarrollador Web Freelance</h4>
+                            <p class="company">Proyectos propios & Clientes</p>
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-right">
-                        <div class="timeline-content">
-                            <h4>Camarero y Encargado</h4>
-                            <span class="company">Diversos Restaurantes</span>
-                            <span class="date">Sep 2021 - Abr 2024</span>
+                    <div class="timeline-row">
+                        <div class="timeline-time">Feb 2025 - Mar 2025</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <i class="fas fa-briefcase icon-bg"></i>
+                            <h4>Prácticas Desarrollo Web</h4>
+                            <p class="company">Directo Telmark</p>
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-left">
-                        <div class="timeline-content">
-                            <h4>Teleoperador de ventas</h4>
-                            <span class="company">IBERDROLA</span>
-                            <span class="date">Ene 2022 - Feb 2022</span>
+                    <div class="timeline-row">
+                        <div class="timeline-time">2021 - 2024</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <i class="fas fa-users icon-bg"></i>
+                            <h4>Experiencia Previa</h4>
+                            <p class="company">Hostelería y Ventas</p>
+                            <p class="desc">McDonald's, Grupo Omega, Iberdrola.</p>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </section>
 
-        <section id="cursos">
-            <div class="container">
-                <h2>Cursos y Voluntariado</h2>
-                <div class="courses-grid">
-                    <div class="course-card">
-                        <h4>Voluntario en ASAENES salud mental</h4>
-                        <span class="institution">ASAENES</span>
-                        <span class="date">(febrero 2022 - junio 2022)</span>
-                    </div>
-                    <div class="course-card">
-                        <h4>Curso: Introducción a Python</h4>
-                        <span class="institution">IBM</span>
-                    </div>
-                    <div class="course-card">
-                        <h4>Cursos de Hostelería</h4>
-                        <span class="institution">Barista (Mocaibo, Caffé Imperiale)</span>
-                        <br>
-                        <span class="institution">Coctelería (Toschi)</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <section id="contacto">
             <div class="container">
-                <h2>Contacto</h2>
-                <p class="contact-info">
-                    Estoy buscando activamente aplicar mis conocimientos en un proyecto desafiante.
-                    Si crees que mi perfil encaja, no dudes en contactarme.
-                </p>
-
-                <div class="contact-wrapper">
-                    
-                    <div class="contact-details-col">
-                        <h3>Información</h3>
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:alexps130803@gmail.com">alexps130803@gmail.com</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:+34661470738">661 47 07 38</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Alcalá de Guadaíra, Sevilla</span>
-                            </div>
+                <h2 class="section-title">Hablemos</h2>
+                
+                <div class="glass-card contact-box">
+                    <div class="contact-left">
+                        <h3>¿Tienes un proyecto?</h3>
+                        <p style="color: var(--text-muted); margin-top: 1rem;">
+                            Estoy listo para nuevos desafíos.
+                        </p>
+                        
+                        <div class="contact-info-new">
+                            <a href="mailto:alexps130803@gmail.com" class="info-row">
+                                <i class="fas fa-envelope"></i> alexps130803@gmail.com
+                            </a>
+                            <a href="tel:+34661470738" class="info-row">
+                                <i class="fas fa-phone"></i> +34 661 47 07 38
+                            </a>
                         </div>
 
-                        <div class="other-info">
-                            <p><i class="fas fa-car"></i> Carnet de conducir B y vehículo propio</p>
-                        </div>
-
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/alex-perez-salazar-5b2b14229" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://github.com/alexP-codeLab" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
+                        <div class="social-row">
+                            <a href="https://www.linkedin.com/in/alex-perez-salazar-5b2b14229" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/alexP-codeLab" target="_blank"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
 
-                    <div class="contact-form-col">
-                        <h3>Envíame un mensaje</h3>
-                        <form id="contact-form" action="https://formspree.io/f/mrboyrjj" method="POST">
-                            <div class="form-group">
-                                <label for="name">Nombre</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Tu Email</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Mensaje</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    <div class="contact-right">
+                        <form action="https://formspree.io/f/mrboyrjj" method="POST" class="glass-form">
+                            <input type="text" name="name" placeholder="Nombre" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <textarea name="message" rows="4" placeholder="Tu mensaje..." required></textarea>
+                            <button type="submit" class="btn btn-primary full-width">Enviar Mensaje</button>
                         </form>
                     </div>
-
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Alex Pérez. Todos los derechos reservados.</p>
-        </div>
+    <footer style="text-align: center; padding: 2rem; color: var(--text-muted);">
+        <p>&copy; 2025 Alex Pérez.</p>
     </footer>
 
     <script src="script.js"></script>
-
 </body>
 </html>

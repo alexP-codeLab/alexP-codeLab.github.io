@@ -1,120 +1,98 @@
-// --- 1. Script para el menú móvil ---
-const menuIcon = document.getElementById('menu-icon');
+// --- 1. CURSOR PERSONALIZADO MAGNÉTICO ---
+const cursorDot = document.querySelector("[data-cursor-dot]");
+const cursorOutline = document.querySelector("[data-cursor-outline]");
+
+window.addEventListener("mousemove", function (e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    // El punto sigue al ratón instantáneamente
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    // El círculo exterior tiene un pequeño delay (efecto smooth)
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// --- 2. EFECTO TILT 3D (Vanilla JS - Sin librerías) ---
+document.addEventListener("mousemove", (e) => {
+    document.querySelectorAll("[data-tilt]").forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Si el ratón está cerca o sobre la tarjeta
+        if (
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom
+        ) {
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculamos la rotación (limitada a 10 grados)
+            const rotateX = ((y - centerY) / centerY) * -5; 
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            card.style.transition = "transform 0.1s";
+        } else {
+            // Resetear si el ratón sale
+            card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
+            card.style.transition = "transform 0.5s ease";
+        }
+    });
+});
+
+
+// --- 3. MÁQUINA DE ESCRIBIR ---
+const texts = ["Developer", "Student", "Problem Solver"];
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type() {
+    if (count === texts.length) {
+        count = 0;
+    }
+    currentText = texts[count];
+    letter = currentText.slice(0, ++index);
+
+    const typeElement = document.getElementById("typewriter");
+    if(typeElement) {
+        typeElement.textContent = letter;
+    }
+
+    if (letter.length === currentText.length) {
+        count++;
+        index = 0;
+        setTimeout(type, 2000); // Espera 2s antes de borrar
+    } else {
+        setTimeout(type, 100);
+    }
+})();
+
+
+// --- 4. MENÚ MÓVIL ---
+const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
-const navLinksItems = document.querySelectorAll('.nav-links a');
 
-// Función para abrir/cerrar el menú
-menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    // Cambiar icono de hamburguesa a 'X' y viceversa
-    if (menuIcon.classList.contains('fa-bars')) {
-        menuIcon.classList.remove('fa-bars');
-        menuIcon.classList.add('fa-times');
-    } else {
-        menuIcon.classList.remove('fa-times');
-        menuIcon.classList.add('fa-bars');
-    }
-});
-
-// Función para cerrar el menú al hacer clic en un enlace (en móvil)
-navLinksItems.forEach(link => {
-    link.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            menuIcon.classList.remove('fa-times');
-            menuIcon.classList.add('fa-bars');
+if(menuToggle) {
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        if(icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         }
     });
-});
-
-
-// --- 2. Script para marcar el enlace activo al hacer scroll ---
-const sections = document.querySelectorAll('section[id]');
-
-window.addEventListener('scroll', () => {
-    let scrollY = window.pageYOffset;
-    
-    sections.forEach(current => {
-        const sectionHeight = current.offsetHeight;
-        const sectionTop = current.offsetTop - 100; // Un pequeño offset
-        let sectionId = current.getAttribute('id');
-        
-        let link = document.querySelector('.nav-links a[href*=' + sectionId + ']');
-        
-        if (link) {
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-                link.classList.add('active');
-            }
-        }
-    });
-    
-    // Caso especial para el inicio
-    let homeLink = document.querySelector('.nav-links a[href="#inicio"]');
-    if (sections.length > 0 && scrollY < sections[0].offsetTop) {
-         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-         if(homeLink) homeLink.classList.add('active');
-    }
-});
-
-
-// --- 3. Efecto Máquina de Escribir (Typewriter) ---
-const textElement = document.getElementById('typewriter');
-const texts = ["Desarrollador Junior", "Estudiante de DAM", "Apasionado del Código", "Futuro Full Stack"];
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function type() {
-    if (!textElement) return; // Protección por si no existe el elemento
-
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-        textElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        textElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-    }
-
-    let typeSpeed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && charIndex === currentText.length) {
-        isDeleting = true;
-        typeSpeed = 2000; // Pausa al terminar de escribir
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        typeSpeed = 500; // Pausa antes de empezar el siguiente
-    }
-
-    setTimeout(type, typeSpeed);
 }
 
-
-// --- 4. Animación al hacer Scroll (Intersection Observer) ---
-const observerOptions = {
-    threshold: 0.1 // Se activa cuando se ve el 10% del elemento
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
-}, observerOptions);
-
-// Iniciar todo cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
-    // Iniciar máquina de escribir
-    type();
-
-    // Iniciar observador de scroll
-    const hiddenElements = document.querySelectorAll('.skill-category, .course-card, .timeline-item, .about-text, .about-education, .hero-text p, .cta-buttons');
-    hiddenElements.forEach((el) => {
-        el.classList.add('hidden');
-        observer.observe(el);
-    });
-});
