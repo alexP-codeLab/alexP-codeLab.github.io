@@ -19,10 +19,10 @@
     cursor: none; /* Ocultamos cursor default para poner el nuestro */
 }
 
-/* --- NUEVO: SCROLL FLUIDO --- */
+/* --- SCROLL FLUIDO --- */
 html {
-    scroll-behavior: smooth;       /* Hace que baje suavemente */
-    scroll-padding-top: 100px;     /* Deja espacio arriba para que la barra no tape el título */
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Evita que el menú tape los títulos */
 }
 
 body {
@@ -364,11 +364,11 @@ section {
 .edu-item h4 { color: var(--text-main); margin: 0.2rem 0; }
 .edu-item p { font-size: 0.9rem; color: var(--text-muted); }
 
-/* --- BENTO GRID (COMPETENCIAS) --- */
+/* --- GRID DE COMPETENCIAS (Bento Modificado) --- */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, auto);
+    /* Ajuste para que se adapte automáticamente al contenido (responsive) */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
@@ -379,6 +379,8 @@ section {
     border-radius: 20px;
     padding: 2rem;
     transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .glass-card:hover {
@@ -388,25 +390,28 @@ section {
 }
 
 .bento-item h3 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     color: var(--text-main);
     display: flex;
     align-items: center;
     gap: 10px;
+    font-size: 1.2rem;
 }
 .bento-item h3 i { color: var(--primary); }
 
-.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .tags span {
     background: rgba(255,255,255,0.1);
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px; /* Un poco menos redondeado para parecerse a la imagen */
     font-size: 0.85rem;
     color: var(--text-main);
+    transition: background 0.3s;
 }
 
-.large { grid-column: span 2; grid-row: span 2; }
-.wide { grid-column: span 2; }
+.tags span:hover {
+    background: rgba(99, 102, 241, 0.4);
+}
 
 /* --- TIMELINE (EXPERIENCIA) --- */
 .timeline {
@@ -515,15 +520,12 @@ section {
     .hero-content { padding-right: 0; margin-bottom: 3rem; }
     .cta-group { justify-content: center; }
     .contact-box { flex-direction: column; }
-    
-    .bento-grid { display: flex; flex-direction: column; }
-    .large, .wide { grid-column: auto; grid-row: auto; }
 }
 
 @media (max-width: 768px) {
     .header { top: 0; }
     .glass-nav { width: 100%; border-radius: 0; border: none; background: rgba(10,10,10,0.95); }
-    .nav-links { display: none; } /* Aquí podrías mantener tu menú JS toggle */
+    .nav-links { display: none; } 
     
     .menu-toggle { display: block; }
     .nav-links.active {
