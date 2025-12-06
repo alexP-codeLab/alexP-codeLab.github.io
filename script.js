@@ -1,4 +1,4 @@
-// --- Script para el menú móvil ---
+// --- 1. Script para el menú móvil ---
 const menuIcon = document.getElementById('menu-icon');
 const navLinks = document.querySelector('.nav-links');
 const navLinksItems = document.querySelectorAll('.nav-links a');
@@ -27,7 +27,8 @@ navLinksItems.forEach(link => {
     });
 });
 
-// --- Script para marcar el enlace activo al hacer scroll ---
+
+// --- 2. Script para marcar el enlace activo al hacer scroll ---
 const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
@@ -42,9 +43,7 @@ window.addEventListener('scroll', () => {
         
         if (link) {
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                // Quitar 'active' de todos
                 document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-                // Añadir 'active' al actual
                 link.classList.add('active');
             }
         }
@@ -52,9 +51,70 @@ window.addEventListener('scroll', () => {
     
     // Caso especial para el inicio
     let homeLink = document.querySelector('.nav-links a[href="#inicio"]');
-    if (scrollY < sections[0].offsetTop) {
+    if (sections.length > 0 && scrollY < sections[0].offsetTop) {
          document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-         homeLink.classList.add('active');
+         if(homeLink) homeLink.classList.add('active');
+    }
+});
+
+
+// --- 3. Efecto Máquina de Escribir (Typewriter) ---
+const textElement = document.getElementById('typewriter');
+const texts = ["Desarrollador Junior", "Estudiante de DAM", "Apasionado del Código", "Futuro Full Stack"];
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function type() {
+    if (!textElement) return; // Protección por si no existe el elemento
+
+    const currentText = texts[textIndex];
+    
+    if (isDeleting) {
+        textElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        textElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
     }
 
+    let typeSpeed = isDeleting ? 50 : 100;
+
+    if (!isDeleting && charIndex === currentText.length) {
+        isDeleting = true;
+        typeSpeed = 2000; // Pausa al terminar de escribir
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+        typeSpeed = 500; // Pausa antes de empezar el siguiente
+    }
+
+    setTimeout(type, typeSpeed);
+}
+
+
+// --- 4. Animación al hacer Scroll (Intersection Observer) ---
+const observerOptions = {
+    threshold: 0.1 // Se activa cuando se ve el 10% del elemento
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, observerOptions);
+
+// Iniciar todo cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+    // Iniciar máquina de escribir
+    type();
+
+    // Iniciar observador de scroll
+    const hiddenElements = document.querySelectorAll('.skill-category, .course-card, .timeline-item, .about-text, .about-education, .hero-text p, .cta-buttons');
+    hiddenElements.forEach((el) => {
+        el.classList.add('hidden');
+        observer.observe(el);
+    });
 });
