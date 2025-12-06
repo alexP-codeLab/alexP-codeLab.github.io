@@ -1,0 +1,682 @@
+/* --- 1. Reseteo y Variables Globales --- */
+:root {
+    --color-primario: #00bfff; /* Azul brillante */
+    --color-fondo: #12121e; /* Azul oscuro/casi negro */
+    --color-tarjeta: #1a1a2e; /* Azul un poco más claro */
+    --color-texto: #e0e0e0;
+    --color-texto-secundario: #a0a0a0;
+    --color-blanco: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section {
+    padding: 6rem 0;
+}
+
+h1, h2, h3 {
+    color: var(--color-blanco);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 3rem; }
+h2 { 
+    font-size: 2.5rem; 
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-primario);
+}
+h3 { font-size: 1.5rem; }
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primario);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-blanco);
+}
+
+/* --- 2. Header (Navegación) --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(18, 18, 30, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-tarjeta);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-blanco);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: var(--color-texto);
+    font-weight: 400;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-primario);
+    border-bottom-color: var(--color-primario);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--color-blanco);
+    cursor: pointer;
+}
+
+/* --- 3. Sección Hero (Inicio) --- */
+#inicio {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 8rem; /* Para compensar el header fijo */
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+}
+
+.hero-text {
+    flex: 2;
+}
+
+.hero-text .subtitle {
+    font-size: 1.2rem;
+    color: var(--color-primario);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+.hero-photo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-wrapper {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 5px solid var(--color-primario);
+    background-color: var(--color-tarjeta);
+    /* !!! IMPORTANTE !!! 
+       Reemplaza esta URL con la URL de tu foto. 
+       O si tienes un archivo local, usa: background-image: url('tu-foto.jpg'); 
+    */
+    background-image: url('img/fotoCV.jpg'); /* <-- REEMPLAZA ESTO */
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 30px rgba(0, 191, 255, 0.3);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer; /* AÑADIDO */
+}
+
+.btn-primary {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+}
+
+/* --- 4. Sección Sobre Mí --- */
+#sobre-mi {
+    background-color: var(--color-tarjeta);
+}
+
+.about-content {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+.about-text, .about-education {
+    flex: 1;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+}
+
+.education-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--color-texto-secundario);
+}
+.education-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.education-item h4 {
+    color: var(--color-blanco);
+    font-size: 1.1rem;
+}
+.education-item .institution {
+    color: var(--color-primario);
+    font-weight: 600;
+}
+.education-item .date {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+}
+
+/* --- 5. Sección Competencias --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.skill-category {
+    background-color: var(--color-tarjeta);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.skill-category h3 {
+    border-bottom: 2px solid var(--color-primario);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    background-color: rgba(0, 191, 255, 0.1);
+    color: var(--color-blanco);
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* --- 6. Sección Experiencia (Timeline) --- */
+#experiencia {
+    background-color: var(--color-tarjeta);
+}
+
+.timeline-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* La línea central */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--color-primario);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    opacity: 0.3;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+/* Círculo en la línea */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: var(--color-fondo);
+    border: 4px solid var(--color-primario);
+    top: 20px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Items a la izquierda */
+.timeline-left {
+    left: 0;
+}
+
+/* Items a la derecha */
+.timeline-right {
+    left: 50%;
+}
+
+/* Flechas para los contenedores */
+.timeline-left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid var(--color-blanco);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--color-blanco);
+}
+
+.timeline-right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid var(--color-blanco);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--color-blanco) transparent transparent;
+}
+
+.timeline-right::after {
+    left: -10px;
+}
+
+/* Contenido del item */
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--color-fondo);
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid var(--color-tarjeta);
+}
+
+.timeline-content h4 {
+    color: var(--color-primario);
+}
+
+.timeline-content .company {
+    font-weight: 600;
+    color: var(--color-blanco);
+}
+
+.timeline-content .date {
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: 0.5rem;
+}
+
+/* --- 7. Sección Cursos --- */
+#cursos {
+    /* Esta sección no tenía fondo, puedes descomentar la línea si quieres */
+    /* background-color: var(--color-fondo); */ 
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.course-card {
+    background-color: var(--color-tarjeta);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-primario);
+}
+
+.course-card h4 {
+    color: var(--color-blanco);
+    margin-bottom: 0.25rem;
+}
+
+.course-card .institution {
+    color: var(--color-primario);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.course-card .date {
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+
+/* --- 8. Sección Contacto (MODIFICADO) --- */
+#contacto {
+    text-align: left; /* CAMBIADO de 'center' */
+}
+
+.contact-info {
+    text-align: center; /* Mantenemos el párrafo centrado */
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+/* NUEVO: Wrapper para las dos columnas de contacto */
+.contact-wrapper {
+    display: flex;
+    gap: 3rem;
+    background-color: var(--color-tarjeta);
+    padding: 2.5rem;
+    border-radius: 10px;
+}
+
+.contact-details-col,
+.contact-form-col {
+    flex: 1;
+}
+
+.contact-details-col h3,
+.contact-form-col h3 {
+    margin-bottom: 2rem;
+    color: var(--color-primario);
+}
+/* FIN NUEVO */
+
+
+.contact-item {
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+    display: flex; /* AÑADIDO */
+    align-items: center; /* AÑADIDO */
+}
+
+.contact-item i {
+    color: var(--color-primario);
+    margin-right: 15px; /* AUMENTADO */
+    font-size: 1.3rem;
+    width: 25px; /* AÑADIDO */
+    text-align: center; /* AÑADIDO */
+}
+
+.contact-item a {
+    color: var(--color-texto);
+}
+
+.contact-item a:hover {
+    color: var(--color-primario);
+}
+
+.social-links {
+    margin-top: 2.5rem; /* AJUSTADO */
+}
+
+.social-links a {
+    font-size: 2.2rem; /* AJUSTADO */
+    color: var(--color-texto-secundario);
+    margin-right: 1.5rem; /* AJUSTADO */
+    margin-left: 0;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-primario);
+    transform: translateY(-5px);
+}
+
+.other-info {
+    margin-top: 2rem; /* AJUSTADO */
+    color: var(--color-texto-secundario);
+    display: flex; /* AÑADIDO */
+    align-items: center; /* AÑADIDO */
+}
+
+/* AÑADIDO para alinear el icono de coche */
+.other-info i {
+    color: var(--color-primario);
+    margin-right: 15px;
+    font-size: 1.3rem;
+    width: 25px;
+    text-align: center;
+}
+
+
+/* --- NUEVO: Estilos para el formulario --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-texto-secundario);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid var(--color-texto-secundario);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite al usuario ajustar la altura */
+}
+
+#contact-form .btn {
+    width: 100%;
+    font-size: 1.1rem;
+}
+/* --- FIN NUEVOS ESTILOS --- */
+
+
+/* --- 9. Footer --- */
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: var(--color-tarjeta);
+    color: var(--color-texto-secundario);
+    font-size: 0.9rem;
+}
+
+/* --- 10. Responsive (Móvil) --- */
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .hero-text {
+        flex: 1;
+    }
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .cta-buttons {
+        justify-content: center;
+    }
+    .photo-wrapper {
+        width: 220px;
+        height: 220px;
+        margin-bottom: 2rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* NUEVO: Contacto responsive */
+    .contact-wrapper {
+        flex-direction: column;
+        gap: 3rem;
+        padding: 2rem;
+    }
+
+    #contacto {
+        text-align: center; /* Volver a centrar en móvil */
+    }
+
+    .contact-details-col h3,
+    .contact-form-col h3 {
+        text-align: center;
+    }
+
+    .contact-item,
+    .other-info {
+        justify-content: center; /* Centrar items de info */
+    }
+    /* FIN NUEVO */
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    
+    /* Menú de navegación móvil */
+    .nav-links {
+        position: fixed;
+        top: 70px; /* Altura del header */
+        right: -100%; /* Oculto fuera de la pantalla */
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--color-tarjeta);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease-in-out;
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+    
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* Timeline en una sola columna */
+    .timeline-container::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .timeline-item::before { /* Ocultar flechas */
+        display: none;
+    }
+    
+    .timeline-left::after, .timeline-right::after {
+        left: 21px;
+    }
+    
+    .timeline-right {
+        left: 0%;
+    }
+}
