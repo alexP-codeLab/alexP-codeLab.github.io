@@ -1,0 +1,80 @@
+---
+---
+
+<section id="sobre-mi" class="py-24">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <h2 class="section-title reveal">
+      Sobre <span class="gradient-text">Mí</span>
+    </h2>
+
+    <div class="glass-card p-8 md:p-10 reveal">
+      <div class="grid md:grid-cols-5 gap-8 md:gap-12">
+
+        <!-- ── Profile text + stats ──────────────────────── -->
+        <div class="md:col-span-3">
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-zinc-500 mb-4 flex items-center gap-2">
+            <i class="fas fa-user text-indigo-400"></i>
+            Perfil Profesional
+          </h3>
+          <p class="text-zinc-400 leading-relaxed mb-8 text-[0.95rem]">
+            Desarrollador <strong class="text-zinc-200 font-semibold">Backend & Mobile</strong> con
+            experiencia en despliegue cloud (Azure) e integración de modelos de IA. Busco un entorno
+            tecnológico dinámico donde aportar valor desde el primer día. Priorizo un formato flexible
+            o remoto que me permita continuar mi evolución técnica, compaginando el trabajo con el
+            inminente <strong class="text-zinc-200 font-semibold">Grado en Ingeniería Informática</strong>
+            y mi investigación personal en finanzas cuantitativas.
+          </p>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4">
+            {[
+              { value: 'C1',    label: 'Inglés' },
+              { value: 'B1/B2', label: 'Italiano' },
+              { value: 'Azure', label: 'Cloud & AI' },
+            ].map(stat => (
+              <div class="bg-zinc-800/50 rounded-xl p-4 text-center border border-zinc-700/50 hover:border-zinc-600 transition-colors">
+                <span class="text-xl font-bold text-cyan-400 block leading-tight">{stat.value}</span>
+                <span class="text-[11px] text-zinc-500 mt-1 block uppercase tracking-wide">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- ── Education ──────────────────────────────────── -->
+        <div class="md:col-span-2 md:border-l md:border-zinc-800 md:pl-10">
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-2">
+            <i class="fas fa-graduation-cap text-indigo-400"></i>
+            Formación
+          </h3>
+
+          <div class="space-y-7">
+            <div class="relative pl-5 border-l-2 border-indigo-500/50">
+              <span class="text-[11px] font-bold text-pink-400 uppercase tracking-widest">2024 – 2026</span>
+              <h4 class="text-sm font-semibold text-zinc-200 mt-1">Técnico Superior DAM</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">IES Cristóbal de Monroy</p>
+              <p class="text-[11px] text-cyan-400 mt-1.5">🏆 Premio a la Excelencia Académica (1º DAM)</p>
+            </div>
+
+            <div class="relative pl-5 border-l-2 border-zinc-700">
+              <span class="text-[11px] font-bold text-pink-400 uppercase tracking-widest">2021 – 2023</span>
+              <h4 class="text-sm font-semibold text-zinc-200 mt-1">Grado en Psicología</h4>
+              <p class="text-xs text-zinc-500 mt-0.5">UNED · 60 ECTS completados</p>
+            </div>
+          </div>
+
+          <!-- Extra -->
+          <div class="mt-8 pt-6 border-t border-zinc-800">
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-zinc-600 mb-3">
+              Certificaciones
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge text-[11px]">Python · IBM</span>
+              <span class="badge text-[11px]">Voluntariado ASAENES</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

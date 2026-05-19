@@ -1,0 +1,119 @@
+---
+const links = [
+  { href: '#inicio',      label: 'Inicio' },
+  { href: '#sobre-mi',   label: 'Sobre Mí' },
+  { href: '#competencias', label: 'Skills' },
+  { href: '#experiencia', label: 'Experiencia' },
+  { href: '#proyectos',  label: 'Proyectos' },
+];
+---
+
+<header class="fixed top-0 left-0 w-full z-50 flex justify-center pt-4 px-4">
+  <nav
+    id="navbar"
+    class="glass-card flex items-center justify-between w-full max-w-4xl px-6 py-3"
+  >
+    <!-- Logo -->
+    <a
+      href="#inicio"
+      class="text-base font-bold tracking-tight text-zinc-100 hover:text-indigo-400 transition-colors"
+    >
+      Alex<span class="gradient-text">.</span>
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden md:flex items-center gap-7">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="nav-link text-sm text-zinc-400 hover:text-zinc-100 transition-colors font-medium"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Desktop CTA + mobile toggle -->
+    <div class="flex items-center gap-3">
+      <a href="#contacto" class="hidden md:inline-flex btn-primary text-xs py-2 px-4">
+        Contacto
+      </a>
+      <button
+        id="menu-toggle"
+        aria-label="Abrir menú"
+        class="md:hidden text-zinc-400 hover:text-zinc-100 transition-colors p-1"
+      >
+        <i id="menu-icon" class="fas fa-bars text-lg"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile full-screen overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 top-[72px] bg-zinc-950/98 backdrop-blur-md z-40 flex-col items-center justify-center gap-8"
+    style="display: none;"
+  >
+    {links.map((link) => (
+      <a
+        href={link.href}
+        class="mobile-nav-link text-2xl font-semibold text-zinc-300 hover:text-indigo-400 transition-colors"
+      >
+        {link.label}
+      </a>
+    ))}
+    <a href="#contacto" class="btn-primary mobile-nav-link mt-2">Contacto</a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu   = document.getElementById('mobile-menu');
+  const icon   = document.getElementById('menu-icon');
+
+  let isOpen = false;
+
+  toggle?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (menu) menu.style.display = isOpen ? 'flex' : 'none';
+    if (menu) menu.style.flexDirection = 'column';
+    if (menu) menu.style.alignItems = 'center';
+    if (menu) menu.style.justifyContent = 'center';
+    if (menu) menu.style.gap = '2rem';
+    icon?.classList.toggle('fa-bars', !isOpen);
+    icon?.classList.toggle('fa-times', isOpen);
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      if (menu) menu.style.display = 'none';
+      icon?.classList.add('fa-bars');
+      icon?.classList.remove('fa-times');
+    });
+  });
+
+  /* Active section highlight */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const activateLink = () => {
+    let current = '';
+    sections.forEach((section) => {
+      if (window.scrollY >= (section as HTMLElement).offsetTop - 120) {
+        current = section.getAttribute('id') ?? '';
+      }
+    });
+    navLinks.forEach((link) => {
+      link.classList.remove('active', 'text-zinc-100');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active', 'text-zinc-100');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', activateLink, { passive: true });
+  activateLink();
+</script>

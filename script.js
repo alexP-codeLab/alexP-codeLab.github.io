@@ -50,7 +50,7 @@ document.addEventListener("mousemove", (e) => {
 
 
 // --- 3. MÁQUINA DE ESCRIBIR ---
-const texts = ["Developer", "Student", "Problem Solver"];
+const texts = ["Backend Developer", "Mobile Developer", "Cloud Engineer", "Problem Solver"];
 let count = 0;
 let index = 0;
 let currentText = "";

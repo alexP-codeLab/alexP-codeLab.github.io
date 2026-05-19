@@ -1,0 +1,69 @@
+---
+const skills = [
+  {
+    icon: 'fas fa-server',
+    title: 'Backend',
+    tags: ['Java', 'Spring Boot', 'Hibernate', 'C#', 'PHP', 'Python'],
+  },
+  {
+    icon: 'fas fa-mobile-alt',
+    title: 'Mobile & Front',
+    tags: ['Dart (Flutter)', 'JavaScript', 'HTML', 'CSS'],
+  },
+  {
+    icon: 'fas fa-brain',
+    title: 'IA & Data',
+    tags: ['OpenAI API', 'PaddleOCR'],
+  },
+  {
+    icon: 'fas fa-cloud',
+    title: 'Cloud & DevOps',
+    tags: ['Azure Service Bus', 'Azure Container Apps', 'Git', 'Postman'],
+  },
+  {
+    icon: 'fas fa-database',
+    title: 'Bases de Datos',
+    tags: ['MongoDB', 'MySQL', 'PostgreSQL', 'Firebase'],
+  },
+  {
+    icon: 'fab fa-wordpress',
+    title: 'CMS',
+    tags: ['WordPress'],
+  },
+  {
+    icon: 'fas fa-language',
+    title: 'Idiomas',
+    tags: ['Español (Nativo)', 'Gallego (Nativo)', 'Inglés (C1)', 'Italiano (B1/B2)'],
+  },
+];
+---
+
+<section id="competencias" class="py-24">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <h2 class="section-title reveal">
+      Stack <span class="gradient-text">Tecnológico</span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 reveal">
+      {skills.map((skill) => (
+        <div class="skill-card group">
+          <div class="flex items-center gap-3 mb-4">
+            <div
+              class="w-9 h-9 rounded-lg bg-indigo-500/10 border border-indigo-500/20
+                     flex items-center justify-center
+                     group-hover:bg-indigo-500/20 transition-colors"
+            >
+              <i class={`${skill.icon} text-indigo-400 text-sm`}></i>
+            </div>
+            <h3 class="text-sm font-semibold text-zinc-200">{skill.title}</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {skill.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

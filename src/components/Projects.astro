@@ -1,0 +1,75 @@
+---
+const projects = [
+  {
+    icon: 'fas fa-play-circle',
+    badge: 'TFG',
+    color: 'indigo',
+    title: 'Freelix',
+    subtitle: 'App de Streaming Multiplataforma',
+    description:
+      'Aplicación móvil multiplataforma de streaming de vídeo bajo arquitectura Cliente-Servidor. Frontend en Flutter, backend RESTful con Spring Boot securizado con Spring Security, persistencia en MySQL y despliegue en Azure App Service.',
+    tech: ['Flutter', 'Spring Boot', 'Spring Security', 'MySQL', 'Azure App Service', 'Firebase Auth/Storage', 'TMDB API'],
+  },
+  {
+    icon: 'fas fa-database',
+    badge: 'Data Engineering',
+    color: 'cyan',
+    title: 'La Liga XML Pipeline',
+    subtitle: 'Pipeline de Procesamiento de Datos',
+    description:
+      'Diseño y desarrollo de un pipeline automatizado para la extracción y procesamiento de datos masivos. Implementación de flujos de transformación mediante parseo y manipulación avanzada de archivos XML, garantizando la integridad de la información deportiva.',
+    tech: ['XML', 'Data Engineering', 'ETL', 'Java'],
+  },
+];
+---
+
+<section id="proyectos" class="py-24">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <h2 class="section-title reveal">
+      <span class="gradient-text">Proyectos</span>
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {projects.map((project, i) => (
+        <div
+          class="glass-card p-7 flex flex-col gap-5 hover:border-zinc-700 transition-all duration-300 group reveal"
+          style={`transition-delay: ${i * 120}ms`}
+        >
+          <!-- Header -->
+          <div class="flex items-start justify-between">
+            <div
+              class={`w-12 h-12 rounded-xl flex items-center justify-center
+                ${project.color === 'cyan'
+                  ? 'bg-cyan-500/10 border border-cyan-500/20'
+                  : 'bg-indigo-500/10 border border-indigo-500/20'
+                }
+                group-hover:scale-110 transition-transform`}
+            >
+              <i
+                class={`${project.icon} text-xl
+                  ${project.color === 'cyan' ? 'text-cyan-400' : 'text-indigo-400'}`}
+              ></i>
+            </div>
+            <span class="badge text-[11px]">{project.badge}</span>
+          </div>
+
+          <!-- Title -->
+          <div>
+            <h3 class="text-xl font-bold tracking-tight mb-1">{project.title}</h3>
+            <p class="text-sm font-medium text-pink-400">{project.subtitle}</p>
+          </div>
+
+          <!-- Description -->
+          <p class="text-sm text-zinc-400 leading-relaxed flex-1">{project.description}</p>
+
+          <!-- Tech tags -->
+          <div class="flex flex-wrap gap-2 pt-1 border-t border-zinc-800">
+            {project.tech.map((t) => (
+              <span class="tech-tag">{t}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
