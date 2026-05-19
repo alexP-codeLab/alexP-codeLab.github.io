@@ -1,75 +1,71 @@
 ---
 const projects = [
   {
-    icon: 'fas fa-play-circle',
-    badge: 'TFG',
-    color: 'indigo',
-    title: 'Freelix',
+    number:   '01',
+    icon:     'fas fa-play-circle',
+    badge:    'TFG',
+    title:    'Freelix',
     subtitle: 'App de Streaming Multiplataforma',
-    description:
-      'Aplicación móvil multiplataforma de streaming de vídeo bajo arquitectura Cliente-Servidor. Frontend en Flutter, backend RESTful con Spring Boot securizado con Spring Security, persistencia en MySQL y despliegue en Azure App Service.',
-    tech: ['Flutter', 'Spring Boot', 'Spring Security', 'MySQL', 'Azure App Service', 'Firebase Auth/Storage', 'TMDB API'],
+    desc:     'Aplicación móvil multiplataforma de streaming de vídeo bajo arquitectura Cliente-Servidor. Frontend en Flutter, backend RESTful con Spring Boot securizado con Spring Security, persistencia en MySQL y despliegue en Azure App Service.',
+    tech:     ['Flutter', 'Spring Boot', 'Spring Security', 'MySQL', 'Azure App Service', 'Firebase Auth/Storage', 'TMDB API'],
   },
   {
-    icon: 'fas fa-database',
-    badge: 'Data Engineering',
-    color: 'cyan',
-    title: 'La Liga XML Pipeline',
+    number:   '02',
+    icon:     'fas fa-database',
+    badge:    'Data Engineering',
+    title:    'La Liga XML Pipeline',
     subtitle: 'Pipeline de Procesamiento de Datos',
-    description:
-      'Diseño y desarrollo de un pipeline automatizado para la extracción y procesamiento de datos masivos. Implementación de flujos de transformación mediante parseo y manipulación avanzada de archivos XML, garantizando la integridad de la información deportiva.',
-    tech: ['XML', 'Data Engineering', 'ETL', 'Java'],
+    desc:     'Diseño y desarrollo de un pipeline automatizado para la extracción y procesamiento de datos masivos mediante parseo y manipulación avanzada de archivos XML, garantizando la integridad de la información deportiva.',
+    tech:     ['XML', 'Data Engineering', 'ETL', 'Java'],
   },
 ];
 ---
 
 <section id="proyectos" class="py-24">
-  <div class="container mx-auto px-6 max-w-6xl">
-    <h2 class="section-title reveal">
-      <span class="gradient-text">Proyectos</span>
-    </h2>
+  <div class="mx-auto px-6 max-w-7xl">
 
-    <div class="grid md:grid-cols-2 gap-6">
-      {projects.map((project, i) => (
+    <div class="mb-14 reveal">
+      <p class="section-label"><span class="amber-line"></span>Proyectos</p>
+    </div>
+
+    <!-- Full-width cards, one per row — very different from two-column grid -->
+    <div class="flex flex-col gap-5 reveal">
+      {projects.map((p, i) => (
         <div
-          class="glass-card p-7 flex flex-col gap-5 hover:border-zinc-700 transition-all duration-300 group reveal"
-          style={`transition-delay: ${i * 120}ms`}
+          class="card p-8 grid sm:grid-cols-[5rem,1fr] gap-8 items-start group hover:border-amber-500/30 transition-colors"
+          style={`transition-delay: ${i * 100}ms`}
         >
-          <!-- Header -->
-          <div class="flex items-start justify-between">
-            <div
-              class={`w-12 h-12 rounded-xl flex items-center justify-center
-                ${project.color === 'cyan'
-                  ? 'bg-cyan-500/10 border border-cyan-500/20'
-                  : 'bg-indigo-500/10 border border-indigo-500/20'
-                }
-                group-hover:scale-110 transition-transform`}
-            >
-              <i
-                class={`${project.icon} text-xl
-                  ${project.color === 'cyan' ? 'text-cyan-400' : 'text-indigo-400'}`}
-              ></i>
+          <!-- Big number -->
+          <div class="text-center">
+            <span class="text-6xl font-black text-zinc-800 group-hover:text-amber-500/20 transition-colors leading-none select-none block">
+              {p.number}
+            </span>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mx-auto mt-3 group-hover:bg-amber-500/20 transition-colors">
+              <i class={`${p.icon} text-sm`}></i>
             </div>
-            <span class="badge text-[11px]">{project.badge}</span>
           </div>
 
-          <!-- Title -->
+          <!-- Content -->
           <div>
-            <h3 class="text-xl font-bold tracking-tight mb-1">{project.title}</h3>
-            <p class="text-sm font-medium text-pink-400">{project.subtitle}</p>
-          </div>
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+              <div>
+                <h3 class="text-2xl font-extrabold tracking-tight text-zinc-100 group-hover:text-amber-400 transition-colors">
+                  {p.title}
+                </h3>
+                <p class="text-sm font-semibold text-amber-500/70 mt-0.5">{p.subtitle}</p>
+              </div>
+              <span class="badge text-[11px]">{p.badge}</span>
+            </div>
 
-          <!-- Description -->
-          <p class="text-sm text-zinc-400 leading-relaxed flex-1">{project.description}</p>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-5">{p.desc}</p>
 
-          <!-- Tech tags -->
-          <div class="flex flex-wrap gap-2 pt-1 border-t border-zinc-800">
-            {project.tech.map((t) => (
-              <span class="tech-tag">{t}</span>
-            ))}
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/60">
+              {p.tech.map(t => <span class="tech-tag">{t}</span>)}
+            </div>
           </div>
         </div>
       ))}
     </div>
+
   </div>
 </section>

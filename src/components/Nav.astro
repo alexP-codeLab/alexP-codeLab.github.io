@@ -1,70 +1,61 @@
 ---
 const links = [
-  { href: '#inicio',      label: 'Inicio' },
-  { href: '#sobre-mi',   label: 'Sobre Mí' },
+  { href: '#inicio',       label: 'Inicio' },
+  { href: '#sobre-mi',    label: 'Sobre Mí' },
   { href: '#competencias', label: 'Skills' },
-  { href: '#experiencia', label: 'Experiencia' },
-  { href: '#proyectos',  label: 'Proyectos' },
+  { href: '#experiencia',  label: 'Experiencia' },
+  { href: '#proyectos',   label: 'Proyectos' },
 ];
 ---
 
-<header class="fixed top-0 left-0 w-full z-50 flex justify-center pt-4 px-4">
-  <nav
-    id="navbar"
-    class="glass-card flex items-center justify-between w-full max-w-4xl px-6 py-3"
-  >
-    <!-- Logo -->
-    <a
-      href="#inicio"
-      class="text-base font-bold tracking-tight text-zinc-100 hover:text-indigo-400 transition-colors"
-    >
-      Alex<span class="gradient-text">.</span>
+<!-- Full-width border-bottom nav, no pill -->
+<header class="fixed top-0 left-0 w-full z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/70">
+  <div class="mx-auto px-6 max-w-7xl flex items-center justify-between h-[60px]">
+
+    <a href="#inicio" class="flex items-center gap-2 group">
+      <span class="w-7 h-7 rounded-md bg-amber-500 flex items-center justify-center text-zinc-950 font-black text-sm leading-none group-hover:bg-amber-400 transition-colors">
+        A
+      </span>
+      <span class="text-sm font-bold text-zinc-300 group-hover:text-zinc-100 transition-colors tracking-tight">
+        Alex Pérez
+      </span>
     </a>
 
-    <!-- Desktop links -->
-    <ul class="hidden md:flex items-center gap-7">
-      {links.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            class="nav-link text-sm text-zinc-400 hover:text-zinc-100 transition-colors font-medium"
-          >
-            {link.label}
-          </a>
-        </li>
+    <!-- Desktop -->
+    <nav class="hidden md:flex items-center gap-7">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class="nav-link text-sm text-zinc-500 hover:text-zinc-100 transition-colors font-medium relative group"
+        >
+          {l.label}
+          <span class="absolute -bottom-1 left-0 w-0 h-px bg-amber-500 group-hover:w-full transition-all duration-300"></span>
+        </a>
       ))}
-    </ul>
+    </nav>
 
-    <!-- Desktop CTA + mobile toggle -->
     <div class="flex items-center gap-3">
-      <a href="#contacto" class="hidden md:inline-flex btn-primary text-xs py-2 px-4">
+      <a href="#contacto" class="hidden md:inline-flex btn-primary py-1.5 px-4 text-xs">
         Contacto
       </a>
-      <button
-        id="menu-toggle"
-        aria-label="Abrir menú"
-        class="md:hidden text-zinc-400 hover:text-zinc-100 transition-colors p-1"
-      >
-        <i id="menu-icon" class="fas fa-bars text-lg"></i>
+      <button id="menu-toggle" aria-label="Menú" class="md:hidden p-2 text-zinc-500 hover:text-zinc-100 transition-colors">
+        <i id="menu-icon" class="fas fa-bars"></i>
       </button>
     </div>
-  </nav>
+  </div>
 
-  <!-- Mobile full-screen overlay -->
+  <!-- Mobile dropdown -->
   <div
     id="mobile-menu"
-    class="fixed inset-0 top-[72px] bg-zinc-950/98 backdrop-blur-md z-40 flex-col items-center justify-center gap-8"
     style="display: none;"
+    class="border-t border-zinc-800 bg-zinc-950 px-6 py-6 flex flex-col gap-5"
   >
-    {links.map((link) => (
-      <a
-        href={link.href}
-        class="mobile-nav-link text-2xl font-semibold text-zinc-300 hover:text-indigo-400 transition-colors"
-      >
-        {link.label}
+    {links.map((l) => (
+      <a href={l.href} class="mobile-link text-base font-semibold text-zinc-300 hover:text-amber-400 transition-colors">
+        {l.label}
       </a>
     ))}
-    <a href="#contacto" class="btn-primary mobile-nav-link mt-2">Contacto</a>
+    <a href="#contacto" class="mobile-link btn-primary self-start">Contacto</a>
   </div>
 </header>
 
@@ -72,48 +63,37 @@ const links = [
   const toggle = document.getElementById('menu-toggle');
   const menu   = document.getElementById('mobile-menu');
   const icon   = document.getElementById('menu-icon');
-
-  let isOpen = false;
+  let open = false;
 
   toggle?.addEventListener('click', () => {
-    isOpen = !isOpen;
-    if (menu) menu.style.display = isOpen ? 'flex' : 'none';
-    if (menu) menu.style.flexDirection = 'column';
-    if (menu) menu.style.alignItems = 'center';
-    if (menu) menu.style.justifyContent = 'center';
-    if (menu) menu.style.gap = '2rem';
-    icon?.classList.toggle('fa-bars', !isOpen);
-    icon?.classList.toggle('fa-times', isOpen);
+    open = !open;
+    if (menu) menu.style.display = open ? 'flex' : 'none';
+    icon?.classList.toggle('fa-bars', !open);
+    icon?.classList.toggle('fa-times', open);
   });
 
-  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+  document.querySelectorAll('.mobile-link').forEach((link) => {
     link.addEventListener('click', () => {
-      isOpen = false;
+      open = false;
       if (menu) menu.style.display = 'none';
-      icon?.classList.add('fa-bars');
-      icon?.classList.remove('fa-times');
+      icon?.classList.replace('fa-times', 'fa-bars');
     });
   });
 
-  /* Active section highlight */
+  /* Active link highlight */
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
-
-  const activateLink = () => {
-    let current = '';
-    sections.forEach((section) => {
-      if (window.scrollY >= (section as HTMLElement).offsetTop - 120) {
-        current = section.getAttribute('id') ?? '';
-      }
+  const onScroll = () => {
+    let cur = '';
+    sections.forEach((s) => {
+      if (window.scrollY >= (s as HTMLElement).offsetTop - 100) cur = s.id;
     });
-    navLinks.forEach((link) => {
-      link.classList.remove('active', 'text-zinc-100');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active', 'text-zinc-100');
-      }
+    navLinks.forEach((a) => {
+      const active = a.getAttribute('href') === `#${cur}`;
+      a.classList.toggle('text-zinc-100', active);
+      a.classList.toggle('text-zinc-500', !active);
     });
   };
-
-  window.addEventListener('scroll', activateLink, { passive: true });
-  activateLink();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>

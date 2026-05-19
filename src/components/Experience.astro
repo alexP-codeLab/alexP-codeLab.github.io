@@ -1,107 +1,92 @@
 ---
-const experiences = [
+const items = [
   {
-    date: 'Mar 2026 – Actual',
-    role: 'Desarrollador Backend / IA',
+    date:    'Mar 2026 – Actual',
+    role:    'Desarrollador Backend / IA',
     company: 'Edotto',
-    location: 'Italia · Prácticas',
-    icon: 'fas fa-robot',
+    location:'Italia · Prácticas',
+    icon:    'fas fa-robot',
     current: true,
-    description:
-      'Diseño e implementación de un servicio microprocesado (cloudoc) para la extracción automatizada de datos en miles de documentos empresariales, soportando millones de páginas mensuales. Integración en producción de OpenAI API y PaddleOCR. Infraestructura cloud escalable con Azure Service Bus y Container Apps; bases de datos MongoDB.',
+    desc:    'Diseño e implementación de un servicio microprocesado (cloudoc) para extracción automatizada de datos en miles de documentos empresariales, soportando millones de páginas mensuales. Integración en producción de OpenAI API y PaddleOCR. Infraestructura cloud escalable con Azure Service Bus y Container Apps; bases de datos MongoDB.',
   },
   {
-    date: 'Feb 2025 – Actual',
-    role: 'Desarrollador Web Freelancer',
+    date:    'Feb 2025 – Actual',
+    role:    'Desarrollador Web Freelancer',
     company: 'Independiente',
-    location: '',
-    icon: 'fas fa-laptop-code',
+    location:'',
+    icon:    'fas fa-laptop-code',
     current: false,
-    description:
-      'Desarrollo integral de sitios web corporativos y blogs (HTML, CSS, PHP). Optimización SEO On-Page y administración de servidores con migraciones seguras y backups de bases de datos.',
+    desc:    'Desarrollo integral de sitios web corporativos y blogs (HTML, CSS, PHP). Optimización SEO On-Page y administración de servidores con migraciones seguras y backups.',
   },
   {
-    date: 'Feb 2025 – Mar 2025',
-    role: 'Prácticas Desarrollo Web',
+    date:    'Feb – Mar 2025',
+    role:    'Prácticas Desarrollo Web',
     company: 'Directo Telmark',
-    location: '',
-    icon: 'fas fa-briefcase',
+    location:'',
+    icon:    'fas fa-briefcase',
     current: false,
-    description: '',
+    desc:    '',
   },
   {
-    date: '2021 – 2024',
-    role: 'Gestión y Atención al Cliente',
+    date:    '2021 – 2024',
+    role:    'Gestión y Atención al Cliente',
     company: 'Varios sectores',
-    location: '',
-    icon: 'fas fa-users',
+    location:'',
+    icon:    'fas fa-users',
     current: false,
-    description:
-      'Encargado en restauración (gestión de personal y cierre de caja bajo alta demanda), Auxiliar de Seguridad y docencia particular de refuerzo académico.',
+    desc:    'Encargado en restauración (gestión de personal y cierre de caja), Auxiliar de Seguridad y docencia particular de refuerzo académico.',
   },
 ];
 ---
 
 <section id="experiencia" class="py-24">
-  <div class="container mx-auto px-6 max-w-6xl">
-    <h2 class="section-title reveal">
-      Trayectoria <span class="gradient-text">Profesional</span>
-    </h2>
+  <div class="mx-auto px-6 max-w-7xl">
 
-    <div class="max-w-3xl mx-auto">
-      <div class="relative">
-        <!-- Vertical line -->
-        <div
-          class="absolute left-6 top-2 bottom-2 w-px"
-          style="background: linear-gradient(to bottom, #6366f1, #3f3f46, transparent);"
-        ></div>
-
-        <div class="space-y-6">
-          {experiences.map((exp, i) => (
-            <div class="relative flex gap-5 reveal" style={`transition-delay: ${i * 80}ms`}>
-
-              <!-- Icon dot -->
-              <div
-                class={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 border
-                  ${exp.current
-                    ? 'bg-indigo-500/15 border-indigo-500/40'
-                    : 'bg-zinc-800/80 border-zinc-700'
-                  }`}
-              >
-                <i
-                  class={`${exp.icon} text-sm
-                    ${exp.current ? 'text-indigo-400' : 'text-zinc-500'}`}
-                ></i>
-              </div>
-
-              <!-- Card -->
-              <div class="glass-card p-5 flex-1 hover:border-zinc-700 transition-colors group">
-                <div class="flex flex-wrap items-start justify-between gap-2 mb-1">
-                  <div>
-                    <h4 class="text-sm font-semibold text-zinc-100">{exp.role}</h4>
-                    <p class="text-xs font-medium text-pink-400 mt-0.5">
-                      {exp.company}{exp.location ? ` · ${exp.location}` : ''}
-                    </p>
-                  </div>
-                  <span
-                    class={`text-[11px] px-2.5 py-0.5 rounded-full border font-medium whitespace-nowrap
-                      ${exp.current
-                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25'
-                        : 'bg-zinc-800 text-zinc-500 border-zinc-700'
-                      }`}
-                  >
-                    {exp.date}
-                  </span>
-                </div>
-                {exp.description && (
-                  <p class="text-xs text-zinc-500 leading-relaxed mt-2">{exp.description}</p>
-                )}
-              </div>
-
-            </div>
-          ))}
-        </div>
-      </div>
+    <div class="mb-14 reveal">
+      <p class="section-label"><span class="amber-line"></span>Experiencia</p>
     </div>
+
+    <!-- Numbered editorial list — no timeline dots, no vertical line -->
+    <div class="max-w-3xl divide-y divide-zinc-800/60 reveal">
+      {items.map((item, i) => (
+        <div
+          class="group py-8 grid grid-cols-[3rem,1fr] gap-6 items-start"
+          style={`transition-delay: ${i * 60}ms`}
+        >
+          <!-- Number -->
+          <span
+            class="text-3xl font-black leading-none text-zinc-800 group-hover:text-amber-500/30 transition-colors pt-1 text-right"
+          >
+            {String(i + 1).padStart(2, '0')}
+          </span>
+
+          <!-- Content -->
+          <div>
+            <div class="flex flex-wrap items-start justify-between gap-3 mb-2">
+              <div>
+                <h4 class="text-base font-bold text-zinc-100 group-hover:text-amber-400 transition-colors">
+                  {item.role}
+                </h4>
+                <p class="text-sm font-semibold text-amber-500/70 mt-0.5">
+                  {item.company}{item.location ? ` · ${item.location}` : ''}
+                </p>
+              </div>
+              <span
+                class={`text-[11px] px-2.5 py-0.5 rounded-full border font-semibold whitespace-nowrap
+                  ${item.current
+                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/25'
+                    : 'bg-zinc-800/80 text-zinc-600 border-zinc-700'}`}
+              >
+                {item.date}
+              </span>
+            </div>
+            {item.desc && (
+              <p class="text-sm text-zinc-500 leading-relaxed">{item.desc}</p>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>

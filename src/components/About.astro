@@ -2,21 +2,48 @@
 ---
 
 <section id="sobre-mi" class="py-24">
-  <div class="container mx-auto px-6 max-w-6xl">
-    <h2 class="section-title reveal">
-      Sobre <span class="gradient-text">Mí</span>
-    </h2>
+  <div class="mx-auto px-6 max-w-7xl">
 
-    <div class="glass-card p-8 md:p-10 reveal">
-      <div class="grid md:grid-cols-5 gap-8 md:gap-12">
+    <div class="mb-14 reveal">
+      <p class="section-label"><span class="amber-line"></span>Sobre Mí</p>
+    </div>
 
-        <!-- ── Profile text + stats ──────────────────────── -->
-        <div class="md:col-span-3">
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-zinc-500 mb-4 flex items-center gap-2">
-            <i class="fas fa-user text-indigo-400"></i>
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+
+      <!-- ── Left: Photo card ──────────────────────────── -->
+      <div class="reveal">
+        <div class="card overflow-hidden">
+          <img
+            src="/img/fotoCV.jpg"
+            alt="Alex Pérez"
+            class="w-full h-[480px] object-cover object-top"
+            loading="eager"
+          />
+          <!-- Stats strip inside card -->
+          <div class="grid grid-cols-3 divide-x divide-zinc-800">
+            {[
+              { val: 'C1',    sub: 'Inglés' },
+              { val: 'B1/B2', sub: 'Italiano' },
+              { val: 'Azure', sub: 'Cloud & AI' },
+            ].map(s => (
+              <div class="p-4 text-center hover:bg-zinc-800/40 transition-colors">
+                <span class="text-lg font-extrabold text-amber-400 block leading-snug">{s.val}</span>
+                <span class="text-[10px] text-zinc-600 uppercase tracking-widest mt-0.5 block">{s.sub}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Right: Bio + education ──────────────────── -->
+      <div class="flex flex-col gap-6 reveal" style="transition-delay: 80ms;">
+
+        <!-- Bio -->
+        <div>
+          <h2 class="text-2xl font-extrabold tracking-tight text-zinc-100 mb-4">
             Perfil Profesional
-          </h3>
-          <p class="text-zinc-400 leading-relaxed mb-8 text-[0.95rem]">
+          </h2>
+          <p class="text-zinc-400 leading-relaxed text-[0.95rem]">
             Desarrollador <strong class="text-zinc-200 font-semibold">Backend & Mobile</strong> con
             experiencia en despliegue cloud (Azure) e integración de modelos de IA. Busco un entorno
             tecnológico dinámico donde aportar valor desde el primer día. Priorizo un formato flexible
@@ -24,54 +51,51 @@
             inminente <strong class="text-zinc-200 font-semibold">Grado en Ingeniería Informática</strong>
             y mi investigación personal en finanzas cuantitativas.
           </p>
+        </div>
 
-          <!-- Stats -->
-          <div class="grid grid-cols-3 gap-4">
-            {[
-              { value: 'C1',    label: 'Inglés' },
-              { value: 'B1/B2', label: 'Italiano' },
-              { value: 'Azure', label: 'Cloud & AI' },
-            ].map(stat => (
-              <div class="bg-zinc-800/50 rounded-xl p-4 text-center border border-zinc-700/50 hover:border-zinc-600 transition-colors">
-                <span class="text-xl font-bold text-cyan-400 block leading-tight">{stat.value}</span>
-                <span class="text-[11px] text-zinc-500 mt-1 block uppercase tracking-wide">{stat.label}</span>
+        <!-- Education -->
+        <div class="card p-6">
+          <p class="section-label mb-5"><span class="amber-line"></span>Formación</p>
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <div class="w-1 rounded-full bg-amber-500/60 flex-shrink-0"></div>
+              <div>
+                <span class="text-[11px] font-bold text-amber-500 uppercase tracking-widest">2024 – 2026</span>
+                <h4 class="text-sm font-bold text-zinc-100 mt-0.5">Técnico Superior DAM</h4>
+                <p class="text-xs text-zinc-500">IES Cristóbal de Monroy</p>
+                <p class="text-[11px] text-emerald-400 font-medium mt-1">🏆 Premio Excelencia Académica (1º DAM)</p>
               </div>
-            ))}
+            </div>
+            <div class="flex gap-4">
+              <div class="w-1 rounded-full bg-zinc-700 flex-shrink-0"></div>
+              <div>
+                <span class="text-[11px] font-bold text-zinc-600 uppercase tracking-widest">2021 – 2023</span>
+                <h4 class="text-sm font-bold text-zinc-100 mt-0.5">Grado en Psicología</h4>
+                <p class="text-xs text-zinc-500">UNED · 60 ECTS completados</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- ── Education ──────────────────────────────────── -->
-        <div class="md:col-span-2 md:border-l md:border-zinc-800 md:pl-10">
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-zinc-500 mb-6 flex items-center gap-2">
-            <i class="fas fa-graduation-cap text-indigo-400"></i>
-            Formación
-          </h3>
-
-          <div class="space-y-7">
-            <div class="relative pl-5 border-l-2 border-indigo-500/50">
-              <span class="text-[11px] font-bold text-pink-400 uppercase tracking-widest">2024 – 2026</span>
-              <h4 class="text-sm font-semibold text-zinc-200 mt-1">Técnico Superior DAM</h4>
-              <p class="text-xs text-zinc-500 mt-0.5">IES Cristóbal de Monroy</p>
-              <p class="text-[11px] text-cyan-400 mt-1.5">🏆 Premio a la Excelencia Académica (1º DAM)</p>
-            </div>
-
-            <div class="relative pl-5 border-l-2 border-zinc-700">
-              <span class="text-[11px] font-bold text-pink-400 uppercase tracking-widest">2021 – 2023</span>
-              <h4 class="text-sm font-semibold text-zinc-200 mt-1">Grado en Psicología</h4>
-              <p class="text-xs text-zinc-500 mt-0.5">UNED · 60 ECTS completados</p>
-            </div>
+        <!-- Certs + code snippet -->
+        <div class="card p-5 font-mono text-[11px] leading-relaxed text-zinc-400 bg-zinc-900">
+          <div class="flex gap-1.5 mb-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500/70"></span>
           </div>
-
-          <!-- Extra -->
-          <div class="mt-8 pt-6 border-t border-zinc-800">
-            <h3 class="text-xs font-semibold uppercase tracking-widest text-zinc-600 mb-3">
-              Certificaciones
-            </h3>
-            <div class="flex flex-wrap gap-2">
-              <span class="badge text-[11px]">Python · IBM</span>
-              <span class="badge text-[11px]">Voluntariado ASAENES</span>
-            </div>
-          </div>
+          <span class="text-pink-400">const</span>
+          <span class="text-blue-300"> dev</span>
+          <span> = &#123;</span><br/>
+          <span class="text-zinc-500">&nbsp;&nbsp;role:</span>
+          <span class="text-amber-400"> "Backend & Mobile"</span>,<br/>
+          <span class="text-zinc-500">&nbsp;&nbsp;cloud:</span>
+          <span class="text-amber-400"> "Azure"</span>,<br/>
+          <span class="text-zinc-500">&nbsp;&nbsp;ai:</span>
+          <span class="text-amber-400"> "OpenAI + PaddleOCR"</span>,<br/>
+          <span class="text-zinc-500">&nbsp;&nbsp;certs:</span>
+          <span class="text-amber-400"> ["Python · IBM", "ASAENES"]</span><br/>
+          <span>&#125;;</span>
         </div>
 
       </div>

@@ -5,8 +5,8 @@ export interface Props {
 }
 
 const {
-  title = 'Alex Pérez - Desarrollador Backend & Mobile',
-  description = 'Desarrollador Backend & Mobile con experiencia en despliegue cloud con Azure e integración de modelos de IA. Premio a la Excelencia Académica en DAM.',
+  title = 'Alex Pérez — Desarrollador Backend & Mobile',
+  description = 'Desarrollador Backend & Mobile con experiencia en Azure e integración de modelos de IA.',
 } = Astro.props;
 ---
 
@@ -19,15 +19,12 @@ const {
     <meta name="author" content="Alex Pérez Salazar" />
     <title>{title}</title>
 
-    <!-- Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -35,29 +32,17 @@ const {
   </head>
 
   <body class="bg-zinc-950 text-zinc-100 font-sans antialiased overflow-x-hidden">
-    <!-- Aurora background -->
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
+    <!-- Dot grid -->
+    <div class="fixed inset-0 -z-10 dot-grid pointer-events-none" aria-hidden="true"></div>
 
     <slot />
 
-    <!-- Global: scroll-reveal -->
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-            }
-          });
-        },
-        { threshold: 0.08 }
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('visible')),
+        { threshold: 0.07 }
       );
-
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
     </script>
   </body>
 </html>
